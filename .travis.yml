@@ -3,17 +3,17 @@ services:
    - docker
 
 before_install:
-   - docker build-t magnusfahlin/deployDemo -f Dockerfile.dev .
+   - docker build -t magnusfahlin/deploydemo -f Dockerfile.dev .
 
 script:
-   - docker run -e CI=true magnusfahlin/deployDemo npm run test
+   - docker run -e CI=true magnusfahlin/deploydemo npm run test
 
 deploy:
    edge: true
    provider: elasticbeanstalk
    region: "eu-north-1"
    app: "DeployDemo"
-   env: "Docker-env"
+   env: "Deploydemo-env"
    bucket_name: "elasticbeanstalk-eu-north-1-909875351047"
    bucket_path: "DeployDemo"
    on:
